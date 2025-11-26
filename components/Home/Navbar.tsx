@@ -1,9 +1,9 @@
 export default function Navbar() {
   return (
-    <header className="w-full bg-white shadow-sm z-50">
+    <header className="w-full bg-white1 shadow-sm z-50">
       <div className="max-w-6xl mx-auto flex justify-between items-center py-4 px-6">
         <div className="text-xl font-semibold flex items-center gap-2">
-          <img src="/images/logo.png" className="w-6 h-6" alt="logo"/>
+          <img src="plato.png" className="w-6 h-6" alt="logo"/>
           <span>The Gourmet Table</span>
         </div>
 

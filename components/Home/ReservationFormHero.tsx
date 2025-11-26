@@ -1,7 +1,7 @@
 export default function ReservationFormHero() {
   return (
     <div className="w-full flex justify-center -mt-20 relative z-40">
-      <div className="bg-white shadow-xl rounded-xl px-6 py-4 flex gap-4 items-center">
+      <div className="bg-white1 shadow-xl rounded-xl px-6 py-4 flex gap-4 items-center">
         
         {/* Date */}
         <div className="flex flex-col">

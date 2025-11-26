@@ -1,6 +1,6 @@
 export default function Features() {
   return (
-    <section className="py-20 max-w-6xl mx-auto px-6 text-center">
+    <section className="py-20 max-w-6xl mx-auto px-6 text-center bg-blue">
       <h2 className="text-3xl font-bold mb-4">
         Everything You Need for the Perfect Meal
       </h2>

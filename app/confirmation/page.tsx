@@ -1,17 +1,19 @@
-"use client";
-import { Suspense } from "react";
-import { useSearchParams } from "next/navigation";
 
-export default function ConfirmationPage() {
-  const params = useSearchParams();
 
-  const table = params.get("table");
-  const guests = params.get("guests");
-  const date = params.get("date");
-  const time = params.get("time");
+export default function ConfirmationPage({
+  searchParams,
+}: {
+  searchParams: { [key: string]: string | string[] | undefined };
+}) {
+
+
+  const table = searchParams.table;
+  const guests = searchParams.guests;
+  const date = searchParams.date;
+  const time = searchParams.time;
 
   return (
-    <Suspense fallback={<div className="p-10 text-center">Loading...</div>}>
+    
     <div className="min-h-screen bg-[#FCF7F4] px-6 py-12">
       
       <div className="max-w-3xl mx-auto bg-white rounded-2xl shadow p-10">
@@ -47,7 +49,7 @@ export default function ConfirmationPage() {
             <p><strong>Date & Time:</strong> {date} at {time}</p>
             <p><strong>Guests:</strong> {guests} people</p>
             <p><strong>Table:</strong> {table}</p>
-            <p><strong>Confirmation ID:</strong> GRT-{table}-{time?.replace(":", "")}</p>
+            <p><strong>Confirmation ID:</strong> GRT-{table}-{time?.toString().replace(":", "")}</p>
           </div>
         </div>
 
@@ -61,7 +63,7 @@ export default function ConfirmationPage() {
         </div>
       </div>
     </div>
-    </Suspense>
+    
   );
   
 }

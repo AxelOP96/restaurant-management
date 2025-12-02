@@ -1,5 +1,5 @@
 "use client";
-
+import { Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 
 export default function ConfirmationPage() {
@@ -11,6 +11,7 @@ export default function ConfirmationPage() {
   const time = params.get("time");
 
   return (
+    <Suspense fallback={<div className="p-10 text-center">Loading...</div>}>
     <div className="min-h-screen bg-[#FCF7F4] px-6 py-12">
       
       <div className="max-w-3xl mx-auto bg-white rounded-2xl shadow p-10">
@@ -60,5 +61,7 @@ export default function ConfirmationPage() {
         </div>
       </div>
     </div>
+    </Suspense>
   );
+  
 }

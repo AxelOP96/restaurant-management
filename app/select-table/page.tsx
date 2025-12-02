@@ -1,21 +1,30 @@
 "use client";
 
-import { useRouter, useSearchParams } from "next/navigation";
-import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
 export default function SelectTablePage() {
   const router = useRouter();
-  const params = useSearchParams();
 
-  const guests = params.get("guests");
-  const date = params.get("date");
-  const time = params.get("time");
+  // Estado para los params
+  const [guests, setGuests] = useState<string | null>(null);
+  const [date, setDate] = useState<string | null>(null);
+  const [time, setTime] = useState<string | null>(null);
 
-  // 15 mesas: 5 de 2 lugares, 5 de 3 lugares, 5 de 4 lugares
+  // Obtengo los parámetros desde window.location (solo en cliente)
+  useEffect(() => {
+    const search = new URLSearchParams(window.location.search);
+
+    setGuests(search.get("guests"));
+    setDate(search.get("date"));
+    setTime(search.get("time"));
+  }, []);
+
+  // 15 mesas
   const tables = [
-    ...Array(5).fill(0).map((_, i) => ({ id: `T${i+1}`, seats: 2 })),
-    ...Array(5).fill(0).map((_, i) => ({ id: `T${i+6}`, seats: 3 })),
-    ...Array(5).fill(0).map((_, i) => ({ id: `T${i+11}`, seats: 4 })),
+    ...Array(5).fill(0).map((_, i) => ({ id: `T${i + 1}`, seats: 2 })),
+    ...Array(5).fill(0).map((_, i) => ({ id: `T${i + 6}`, seats: 3 })),
+    ...Array(5).fill(0).map((_, i) => ({ id: `T${i + 11}`, seats: 4 })),
   ];
 
   const [selectedTable, setSelectedTable] = useState<string | null>(null);
@@ -30,7 +39,6 @@ export default function SelectTablePage() {
 
   return (
     <div className="min-h-screen bg-[#FCF7F4] px-6 py-12">
-      
       <h1 className="text-center text-5xl font-extrabold text-[#2A1A18] mb-12">
         Select Your Table
       </h1>
@@ -51,7 +59,7 @@ export default function SelectTablePage() {
           <button
             onClick={handleConfirm}
             disabled={!selectedTable}
-            className={`w-full mt-6 py-3 rounded-xl text-lg font-bold
+            className={`w-full mt-6 py-3 rounded-xl text-lg font-bold 
               ${selectedTable ? "bg-[#F04D23] text-white" : "bg-gray-400 text-white"}
             `}
           >
@@ -100,7 +108,6 @@ export default function SelectTablePage() {
             ))}
           </div>
         </div>
-
       </div>
     </div>
   );
